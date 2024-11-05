@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Rick and Morty</title>
-  <link rel="stylesheet" href="/RyM-API-main/ProyectoF/css/Styles.css">
+  <link rel="stylesheet" href="../ProyectoF/css/Styles.css">
 </head>
 <body>
   <header>
@@ -17,10 +17,10 @@
         <h3>Personajes</h3>
         <label for="charStatus">Estado:</label>
         <select id="charStatus">
-            <option>Todos</option>
-            <option>Vivo</option>
-            <option>Muerto</option>
-            <option>Desconocido</option>
+            <option value="">Todos</option>
+            <option value="alive">Vivo</option>
+            <option value="dead">Muerto</option>
+            <option value="unknown">Desconocido</option>
         </select>
       </ul>
       <h3>Busqueda</h3>
@@ -39,6 +39,6 @@
         </div>
       </section>
 
-  <script src="script.js"></script>
+  <script src="main.js"></script>
 </body>
 </html>
