@@ -24,12 +24,16 @@
         </select>
       </ul>
       <h3>Busqueda</h3>
-      <select id="searchType">
-        <option value="character">Personajes</option>
-        <option value="location">Lugares</option>
-      </select>
+      <div>
+        <label>
+          <input type="radio" name="searchType" value="character" checked> Personajes
+        </label>
+        <label>
+          <input type="radio" name="searchType" value="location"> Lugares
+        </label>
+      </div>
       <input type="text" id="searchInput" placeholder="Buscar...">
-      <button>Buscar</button>
+      <button onclick="buscar()">Buscar</button>
     </aside>
 
     <section id="resultsSection">

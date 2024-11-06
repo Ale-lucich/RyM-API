@@ -2,18 +2,17 @@ const personajesEl = document.getElementById('results')
 const nombreEl = document.getElementById('searchInput')
 const estadoEl = document.getElementById('charStatus')
 
-async function buscarPersonajes(name, status){
+async function buscarDatos(name, status, type){
     
-    let url = 'https://rickandmortyapi.com/api/character/'
+    let url = `https://rickandmortyapi.com/api/${type}/`;
 
-    if(name || status){
-        url += '?'
-        if(name){
-            url += `name=${name}&`
+    if (name || (type === "character" && status)) {
+        url += '?';
+        if (name) {
+            url += `name=${name}&`;
         }
-
-        if(status){
-            url+= `status=${status}`
+        if (type === "character" && status) {
+            url += `status=${status}`;
         }
     }
 
@@ -25,36 +24,52 @@ async function buscarPersonajes(name, status){
 
 }
 
-async function mostrarPersonajes(name, status) {
-
-    const personajes = await buscarPersonajes(name, status)
+async function mostrarDatos(name, status, type) {
+    const datos = await buscarDatos(name, status, type);
 
     personajesEl.innerHTML = ''
 
-    for(let personaje of personajes){
-        const carta = document.createElement("div")
-        carta.classList.add('carta-personaje')
+    for (let item of datos) {
+        const carta = document.createElement("div");
+        carta.classList.add('carta-personaje');
 
-        carta.innerHTML = `<article>
-        <div class="image-container">
-        <img src="${personaje.image}" alt="Personaje">
-        </div>
-        <h2>${personaje.name}</h2>
-        <p>${personaje.gender}</p>
-        <span>${personaje.status} - ${personaje.species}</span>
-        </article>`
+        if (type === "character") {
+            carta.innerHTML = `<article>
+                <div class="image-container">
+                    <img src="${item.image}" alt="Personaje">
+                </div>
+                <h2>${item.name}</h2>
+                <p>${item.gender}</p>
+                <span>${item.status} - ${item.species}</span>
+            </article>`;
+        } else if (type === "location") {
+            carta.innerHTML = `<article>
+                <h2>${item.name}</h2>
+                <p>Tipo: ${item.type}</p>
+                <span>Dimensión: ${item.dimension}</span>
+            </article>`;
+        }
 
-        personajesEl.appendChild(carta)
+        personajesEl.appendChild(carta);
     }
 }
 
-mostrarPersonajes()
+nombreEl.value= '';
 
-
-nombreEl.addEventListener('input', () => {
-    mostrarPersonajes(nombreEl.value, estadoEl.value)
-})
+function buscar() {
+    const tipoBusqueda = document.querySelector('input[name="searchType"]:checked').value;
+    mostrarDatos(nombreEl.value, estadoEl.value, tipoBusqueda);
+    nombreEl.value = '';
+}
 
 estadoEl.addEventListener('change', () => {
-    mostrarPersonajes(nombreEl.value, estadoEl.value)
-})
+    const tipoBusqueda = document.querySelector('input[name="searchType"]:checked').value;
+    mostrarDatos(nombreEl.value, estadoEl.value, tipoBusqueda);
+});
+
+document.querySelectorAll('input[name="searchType"]').forEach((radio) => {
+    radio.addEventListener('change', () => {
+        const tipoBusqueda = document.querySelector('input[name="searchType"]:checked').value;
+        mostrarDatos(nombreEl.value, estadoEl.value, tipoBusqueda);
+    });
+});
