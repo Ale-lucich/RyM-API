@@ -31,22 +31,22 @@ async function mostrarDatos(name, status, type) {
 
     for (let item of datos) {
         const carta = document.createElement("div");
-        carta.classList.add('carta-personaje');
+
 
         if (type === "character") {
+            carta.classList.add('carta-personaje');
             carta.innerHTML = `<article>
-                <div class="image-container">
                     <img src="${item.image}" alt="Personaje">
-                </div>
                 <h2>${item.name}</h2>
-                <p>${item.gender}</p>
+                <p>Gender: ${item.gender}</p>
                 <span>${item.status} - ${item.species}</span>
             </article>`;
         } else if (type === "location") {
+            carta.classList.add('carta-lugar');
             carta.innerHTML = `<article>
                 <h2>${item.name}</h2>
                 <p>Tipo: ${item.type}</p>
-                <span>Dimensión: ${item.dimension}</span>
+                <p>Dimensión: ${item.dimension}</p>
             </article>`;
         }
 
