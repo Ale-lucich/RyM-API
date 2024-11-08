@@ -10,6 +10,9 @@
 <body>
   <header>
     <img src="../ProyectoF/Imagenes/RyM-Titulo.svg" alt="Imagen de Rick and Morty" id="header-image">
+    <audio id="backgroundMusic" autoplay loop>
+      <source src="../ProyectoF/Musica/Rick and Morty.mp3" type="audio/mp3">
+    </audio>
   </header>
   <main>
     <aside id="filters">
@@ -45,14 +48,24 @@
         </select>
       </div>
       <h3>Busqueda por nombre</h3>
+      <div class="filter-radio">
+        <label>
+          <input type="radio" name="searchType" value="character" checked> Personajes
+        </label>
+        <label>
+          <input type="radio" name="searchType" value="location"> Lugares
+        </label>
+      </div>
       <input type="text" id="searchInput" placeholder="Buscar...">
       <button onclick="buscar()">Buscar</button>
     </aside>
+    <div id="pagination-container">
+      <div id="pagination" class="pagination"></div>
+  </div>
     <div id="divider"></div>
     <section id="resultsSection">
       <div id="resultsContainer">
         <div id="results"></div>
-        <div id="pagination" class="pagination"></div>
       </div>
     </section>
   </main>  

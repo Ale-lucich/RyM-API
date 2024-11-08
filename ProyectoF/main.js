@@ -3,6 +3,7 @@ const nombreEl = document.getElementById('searchInput');
 const estadoEl = document.getElementById('charStatus');
 const generoEl = document.getElementById('charGender');
 const especieEl = document.getElementById('charSpecies');
+const tipoBusquedaEl = document.querySelectorAll('input[name="searchType"]');
 const cardsPerPage = 15;
 let currentPage = 1;
 let allDatos = [];
@@ -22,7 +23,7 @@ async function buscarDatos(name, status, gender, species, type) {
     return datos;
 }
 
-async function mostrarDatos(name = '', status = '', gender = '', species = '', type = 'character') {
+async function mostrarDatos(name = '', status = '', gender = '', species = '', type = document.querySelector('input[name="searchType"]:checked').value) {
     allDatos = await buscarDatos(name, status, gender, species, type);
     currentPage = 1;
     actualizarVista();
@@ -78,6 +79,11 @@ function buscar() {
         especieEl.value
     );
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+    const musica = document.getElementById('backgroundMusic');
+    musica.volume = 0.2;
+  });
 
 estadoEl.addEventListener('change', buscar);
 generoEl.addEventListener('change', buscar);

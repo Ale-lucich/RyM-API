@@ -6,6 +6,12 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    background-image: url('../Imagenes/backgroundRyM.jpg'); /* Agregar la imagen de fondo */
+    background-size: cover; /* Asegura que la imagen cubra todo el fondo */
+    background-position: center; /* Centra la imagen */
+    background-attachment: fixed; /* Hace que la imagen quede fija al hacer scroll */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    height: 100vh; /* Asegura que el fondo cubra toda la altura de la ventana */
 }
 
 header {
@@ -21,13 +27,15 @@ header h1 {
 }
 
 #header-image {
-    width: 300px;
+    width: 17em;
     height: auto;
 }
 
 main {
     display: flex;
     flex-direction: column;
+    margin-left: 5%;
+    margin-right: 5%;
 }
 
 h2, h3 {
@@ -37,7 +45,7 @@ h2, h3 {
 aside {
     width: 100%;
     padding: 20px;
-    background-color: #f4f4f4;
+    background-color: #777;
     border-bottom: 1px solid #ddd;
     display: flex;
     flex-wrap: wrap;
@@ -87,6 +95,7 @@ aside h3 {
 
 .filtro-grupo label {
     margin-bottom: 5px;
+    
 }
 
 .filtro-grupo select {
@@ -128,43 +137,156 @@ aside input:focus, aside select:focus {
 
 h2, h3 {
     margin: 10px 0;
+    font-size: 30px;
+    font-weight: bold;
 }
 
 .carta-personaje, .carta-lugar {
-    background: #fff;
+    background-color: #2b2b2b;
+    color: #fff;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     padding: 15px;
     text-align: center;
 }
 
-.carta-personaje h2{
-    margin-left: 5px;
+.carta-personaje:hover, .carta-lugar:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.3);
 }
 
-.carta-personaje p{
-    color: #222;
-    margin-left: 5px;
+.carta-personaje h2, .carta-lugar h2 {
+    font-size: 2em;
+    margin: 10px 0;
+    color: #e1b12c;
 }
 
-.carta-personaje span{
-    margin-left: 5px;
+.carta-personaje p, .carta-lugar p {
+    font-size: 1.5em;
+    margin: 5px 0;
+    color: #ccc;
+}
+
+.carta-personaje span, .carta-lugar span {
+    font-size: 1em;
+    color: #b0b0b0;
 }
 
 .carta-personaje img {
-    max-width: 100%;
+    width: 100%;
+    height: auto;
     border-radius: 8px;
+    margin-bottom: 10px;
 }
 
-.carta-lugar h2{
-    text-align: center;
+#pagination-container {
+    display: flex;
+    justify-content: center;
     margin-top: 20px;
+    margin-bottom: 20px;
 }
 
-.carta-lugar p{
-    color: #222;
-    text-align: center;
-    margin-top: 20px;
+.pagination {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.pagination button {
+    padding: 10px 15px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    background-color: #f4f4f4;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.pagination button:hover {
+    background-color: #ddd;
+}
+
+.pagination button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+#filters select {
+    appearance: none;
+    background-color: #333;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#filters select:focus,
+#filters select:active {
+    background-color: #333;
+    color: white;
+}
+
+#filters label {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.filter-radio {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 15px 20px;
+    background-color: #2b2b2b;
+    border-radius: 10px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    color: #e1b12c;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.filter-radio label {
+    font-size: 1.2em;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+
+.filter-radio input[type="radio"] {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #e1b12c;
+    border-radius: 50%;
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+    outline: none;
+    background-color: transparent;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.filter-radio input[type="radio"]:checked {
+    background-color: #ffd700;
+    border-color: #ffd700;
+}
+
+.filter-radio label:hover {
+    color: #ffd700;
 }
 
 @media screen and (max-width: 768px) {
@@ -179,6 +301,16 @@ h2, h3 {
 
     #results {
         grid-template-columns: repeat(2, 1fr);
+    }
+
+    .carta-personaje, .carta-lugar {
+        padding: 10px;
+    }
+
+    .filter-radio {
+        flex-direction: column;
+        padding: 10px;
+        text-align: center;
     }
 }
 @media (max-width: 480px) {
