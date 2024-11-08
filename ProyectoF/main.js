@@ -1,12 +1,14 @@
 const personajesEl = document.getElementById('results')
 const nombreEl = document.getElementById('searchInput')
 const estadoEl = document.getElementById('charStatus')
+const generoEl = document.getElementById('charGender');
+const especieEl = document.getElementById('charSpecies');
 const cardsPerPage = 15;
 let currentPage = 1;
 let allDatos = [];
 
-async function buscarDatos(name, status, type) {
-    let url = `https://rickandmortyapi.com/api/${type}/?${name ? `name=${name}&` : ''}${type === "character" && status ? `status=${status}` : ''}`;
+async function buscarDatos(name, status, gender, species, type) {
+    let url = `https://rickandmortyapi.com/api/${type}/?${name ? `name=${name}&` : ''}${type === "character" && status ? `status=${status}&` : ''}${type === "character" && gender ? `gender=${gender}&` : ''}${type === "character" && species ? `species=${species}` : ''}`;
     let datos = [];
     let page = 1;
     while (true) {
@@ -20,8 +22,8 @@ async function buscarDatos(name, status, type) {
     return datos;
 }
 
-async function mostrarDatos(name, status, type) {
-    allDatos = await buscarDatos(name, status, type);
+async function mostrarDatos(name = '', status = '', gender = '', species = '', type = 'character') {
+    allDatos = await buscarDatos(name, status, gender, species, type);
     currentPage = 1;
     actualizarVista();
 }
@@ -70,9 +72,17 @@ function cambiarPagina(direccion) {
 
 function buscar() {
     const tipoBusqueda = document.querySelector('input[name="searchType"]:checked').value;
-    mostrarDatos(nombreEl.value, estadoEl.value, tipoBusqueda);
-    nombreEl.value = '';
+    mostrarDatos(
+        nombreEl.value,
+        estadoEl.value,
+        generoEl.value,
+        especieEl.value,
+        tipoBusqueda
+    );
 }
 
 estadoEl.addEventListener('change', buscar);
+generoEl.addEventListener('change', buscar);
+especieEl.addEventListener('change', buscar);
 document.querySelectorAll('input[name="searchType"]').forEach(radio => radio.addEventListener('change', buscar));
+document.addEventListener('DOMContentLoaded', () => mostrarDatos());

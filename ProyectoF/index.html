@@ -14,16 +14,38 @@
   </header>
   <main>
     <aside>
-      <ul>
+      <h2>Filtros de búsqueda</h2>
+      <div class="filtro-grupo">
         <h3>Personajes</h3>
         <label for="charStatus">Estado:</label>
         <select id="charStatus">
-            <option value="">Todos</option>
-            <option value="alive">Vivo</option>
-            <option value="dead">Muerto</option>
-            <option value="unknown">Desconocido</option>
+          <option value="">Todos</option>
+          <option value="alive">Vivo</option>
+          <option value="dead">Muerto</option>
+          <option value="unknown">Desconocido</option>
         </select>
-      </ul>
+      </div>
+      <div class="filtro-grupo">
+        <label for="charSpecies">Especie:</label>
+        <select id="charSpecies">
+          <option value="">Todas</option>
+          <option value="Human">Humano</option>
+          <option value="Alien">Alien</option>
+          <option value="Robot">Robot</option>
+          <option value="Animal">Animal</option>
+          <option value="Mythological Creature">Criatura mitologica</option>
+        </select>
+      </div>
+      <div class="filtro-grupo">
+        <label for="charGender">Género:</label>
+        <select id="charGender">
+          <option value="">Todos</option>
+          <option value="male">Masculino</option>
+          <option value="female">Femenino</option>
+          <option value="genderless">Sin género</option>
+          <option value="unknown">Desconocido</option>
+        </select>
+      </div>
       <h3>Busqueda</h3>
       <div>
         <label>

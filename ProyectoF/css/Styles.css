@@ -30,6 +30,10 @@ main {
     display: flex;
 }
 
+h2, h3 {
+    margin: 10px 0;
+}
+
 aside {
     width: 20%;
     padding: 20px;
@@ -37,39 +41,43 @@ aside {
     border-right: 1px solid #ddd;
 }
 
-aside h2 {
-    font-size: 1.2em;
-}
-
-aside ul {
-    list-style: none;
-    padding: 0;
-}
-
-aside ul li {
-    margin: 10px 0;
-}
 
 aside select,
-aside input,
-aside button {
+aside input {
     width: 100%;
-    padding: 10px;
+    padding: 8px;
     margin-top: 10px;
     font-size: 1em;
 }
 
 aside button {
+    width: 100%;
+    padding: 10px;
     background-color: #333;
     color: white;
     border: none;
     border-radius: 5px;
+    font-size: 1em;
     transition: background-color 0.3s;
 }
 
 aside button:hover {
     background-color: #555;
     cursor: pointer;
+}
+
+aside input:focus, aside select:focus {
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.filtro-grupo {
+    margin-bottom: 20px;
+}
+
+.filtro-grupo h3 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
 }
 
 #results {
