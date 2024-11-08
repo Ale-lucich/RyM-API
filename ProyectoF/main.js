@@ -1,6 +1,6 @@
-const personajesEl = document.getElementById('results')
-const nombreEl = document.getElementById('searchInput')
-const estadoEl = document.getElementById('charStatus')
+const personajesEl = document.getElementById('results');
+const nombreEl = document.getElementById('searchInput');
+const estadoEl = document.getElementById('charStatus');
 const generoEl = document.getElementById('charGender');
 const especieEl = document.getElementById('charSpecies');
 const cardsPerPage = 15;
@@ -43,7 +43,7 @@ function actualizarVista() {
             contenido += `
                 <img src="${item.image}" alt="Personaje">
                 <h2>${item.name}</h2>
-                <p>Gender: ${item.gender}</p>
+                <p>Género: ${item.gender}</p>
                 <span>${item.status} - ${item.species}</span>
             `;
         } else {
@@ -71,18 +71,15 @@ function cambiarPagina(direccion) {
 }
 
 function buscar() {
-    const tipoBusqueda = document.querySelector('input[name="searchType"]:checked').value;
     mostrarDatos(
         nombreEl.value,
         estadoEl.value,
         generoEl.value,
-        especieEl.value,
-        tipoBusqueda
+        especieEl.value
     );
 }
 
 estadoEl.addEventListener('change', buscar);
 generoEl.addEventListener('change', buscar);
 especieEl.addEventListener('change', buscar);
-document.querySelectorAll('input[name="searchType"]').forEach(radio => radio.addEventListener('change', buscar));
 document.addEventListener('DOMContentLoaded', () => mostrarDatos());

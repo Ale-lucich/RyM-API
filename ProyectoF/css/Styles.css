@@ -28,6 +28,7 @@ header h1 {
 
 main {
     display: flex;
+    flex-direction: column;
 }
 
 h2, h3 {
@@ -35,12 +36,15 @@ h2, h3 {
 }
 
 aside {
-    width: 20%;
+    width: 100%;
     padding: 20px;
     background-color: #f4f4f4;
-    border-right: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
 }
-
 
 aside select,
 aside input {
@@ -72,7 +76,18 @@ aside input:focus, aside select:focus {
 }
 
 .filtro-grupo {
-    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+}
+
+.filtro-grupo label {
+    margin-bottom: 5px;
+}
+
+.filtro-grupo select {
+    padding: 8px;
+    width: 100%;
 }
 
 .filtro-grupo h3 {
@@ -146,4 +161,19 @@ h2, h3 {
     color: #222;
     text-align: center;
     margin-top: 20px;
+}
+
+@media screen and (max-width: 768px) {
+    aside {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .filtro-grupo {
+        width: 100%;
+    }
+
+    #results {
+        grid-template-columns: 1fr;
+    }
 }
