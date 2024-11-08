@@ -10,7 +10,6 @@ body {
 
 header {
     display: flex;
-    justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
     background-color: #333;
@@ -22,7 +21,7 @@ header h1 {
 }
 
 #header-image {
-    width: 100px;
+    width: 300px;
     height: auto;
 }
 
@@ -73,6 +72,11 @@ aside button:hover {
 aside input:focus, aside select:focus {
     outline: none;
     transition: border-color 0.3s;
+}
+
+aside h3 {
+    display: block;
+    width: 100%;
 }
 
 .filtro-grupo {
@@ -174,6 +178,24 @@ h2, h3 {
     }
 
     #results {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
     }
+}
+@media (max-width: 480px) {
+    .filtro-grupo select,
+    .filtro-grupo input,
+    .filtro-grupo button {
+        font-size: 0.9em;
+    }
+
+    #results {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 340px) {
+    #results{
+        grid-template-columns: repeat(1, 1fr);
+    }
+    
 }
